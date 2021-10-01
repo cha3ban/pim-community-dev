@@ -91,6 +91,7 @@ services:
         class: Akeneo\Pim\Structure\Bundle\Query\PublicApi\Attribute\Sql\SqlFindFlattenAttributes
         arguments:
             - '@database_connection'
+            - '@logger'
 
     akeneo.pim.structure.query.get_channel_translations:
         class: Akeneo\Pim\Structure\Bundle\Query\PublicApi\Channel\Sql\SqlGetChannelTranslations

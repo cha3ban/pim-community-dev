@@ -7,14 +7,17 @@ namespace Akeneo\Pim\Structure\Bundle\Query\PublicApi\Attribute\Sql;
 use Akeneo\Pim\Structure\Component\Query\PublicApi\Attribute\FindFlattenAttributesInterface;
 use Akeneo\Pim\Structure\Component\Query\PublicApi\Attribute\FlattenAttribute;
 use Doctrine\DBAL\Connection;
+use Psr\Log\LoggerInterface;
 
 final class SqlFindFlattenAttributes implements FindFlattenAttributesInterface
 {
     private Connection $connection;
+    private LoggerInterface $logger;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, LoggerInterface $logger)
     {
         $this->connection = $connection;
+        $this->logger = $logger;
     }
 
     public function execute(
@@ -31,6 +34,11 @@ final class SqlFindFlattenAttributes implements FindFlattenAttributesInterface
         if ($offset < 0) {
             $offset = 0;
         }
+$query = <<<SQL
+    SELECT code FROM pim_catalog_attribute;
+SQL;
+
+        $this->logger->info("query", ['results' => $this->connection->executeQuery($query)->fetchAll()]);
 
         $query = <<<SQL
 WITH
