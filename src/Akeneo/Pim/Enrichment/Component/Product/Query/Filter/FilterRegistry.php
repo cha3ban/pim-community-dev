@@ -49,6 +49,25 @@ class FilterRegistry implements FilterRegistryInterface
      */
     public function getFilter($code, $operator)
     {
+        $value = [];
+        foreach ($this->attributeFilters as $filter) {
+            $value[] = [
+                'class' => get_class($filter),
+                'attribute_type' => $filter->getAttributeTypes(),
+                'operators' => $filter->getOperators()
+            ];
+        }
+
+        foreach ($this->fieldFilters as $filter) {
+            $value[] = [
+                'class' => get_class($filter),
+                'fields' => $filter->getFields(),
+                'operators' => $filter->getOperators()
+            ];
+        }
+
+        var_dump($value);
+        die();
         $attribute = $this->attributeRepository->findOneBy(['code' => FieldFilterHelper::getCode($code)]);
 
         if (null !== $attribute) {
