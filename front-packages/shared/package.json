@@ -7,12 +7,13 @@
     "lib:build": "tsc -p ./tsconfig.json",
     "test:unit:run": "jest --no-cache --config ./jest.config.js --maxWorkers=3"
   },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.22",
-    "jest": "^26.0.22"
+  "dependencies": {
+    "@testing-library/jest-dom": "5.11.*",
+    "@testing-library/react": "11.1.*",
+    "@testing-library/user-event": "12.1.*",
+    "@testing-library/dom": "8.7.*",
+    "@types/jest": "26.0.*",
+    "jest": "26.0.*"
   },
   "peerDependencies": {
     "akeneo-design-system": "link:../akeneo-design-system"
