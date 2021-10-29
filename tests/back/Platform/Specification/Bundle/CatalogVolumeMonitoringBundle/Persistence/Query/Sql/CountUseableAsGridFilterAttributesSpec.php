@@ -33,6 +33,6 @@ class CountUseableAsGridFilterAttributesSpec extends ObjectBehavior
     {
         $connection->query(Argument::type('string'))->willReturn($statement);
         $statement->fetch()->willReturn(['count' => '7']);
-        $this->fetch()->shouldBeLike(new CountVolume(7, 14, 'count_useable_as_grid_filter_attributes'));
+        $this->fetch()->shouldBeLike(new CountVolume(7, 'count_useable_as_grid_filter_attributes'));
     }
 }

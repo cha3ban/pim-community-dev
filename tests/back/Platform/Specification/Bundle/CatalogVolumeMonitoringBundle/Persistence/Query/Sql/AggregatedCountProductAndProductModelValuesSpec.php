@@ -34,7 +34,7 @@ class AggregatedCountProductAndProductModelValuesSpec extends ObjectBehavior
         $connection->query(Argument::type('string'))->willReturn($statement);
         $statement->fetch()->willReturn(['value' => 123]);
 
-        $this->fetch()->shouldBeLike(new CountVolume(123, 30, 'count_product_and_product_model_values'));
+        $this->fetch()->shouldBeLike(new CountVolume(123, 'count_product_and_product_model_values'));
     }
 
     function it_fetches_a_count_volume_with_an_empty_value_if_no_aggregated_volume_has_been_found($connection, Statement $statement)
@@ -42,6 +42,6 @@ class AggregatedCountProductAndProductModelValuesSpec extends ObjectBehavior
         $connection->query(Argument::type('string'))->willReturn($statement);
         $statement->fetch()->willReturn(null);
 
-        $this->fetch()->shouldBeLike(new CountVolume(0, 30, 'count_product_and_product_model_values'));
+        $this->fetch()->shouldBeLike(new CountVolume(0, 'count_product_and_product_model_values'));
     }
 }

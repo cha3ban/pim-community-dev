@@ -40,7 +40,7 @@ class AggregatedAverageMaxOptionsPerAttributeSpec extends ObjectBehavior
             'average' => 7
         ]);
 
-        $this->fetch()->shouldBeLike(new AverageMaxVolumes(12, 7, 10, 'average_max_options_per_attribute'));
+        $this->fetch()->shouldBeLike(new AverageMaxVolumes(12, 7, 'average_max_options_per_attribute'));
     }
 
     function it_fetches_a_average_max_with_empty_values_if_no_aggregated_volume_has_been_found($connection, Statement $statement)
@@ -51,6 +51,6 @@ class AggregatedAverageMaxOptionsPerAttributeSpec extends ObjectBehavior
         $statement->execute()->shouldBeCalled();
         $statement->fetch()->willReturn(null);
 
-        $this->fetch()->shouldBeLike(new AverageMaxVolumes(0, 0, 10, 'average_max_options_per_attribute'));
+        $this->fetch()->shouldBeLike(new AverageMaxVolumes(0, 0, 'average_max_options_per_attribute'));
     }
 }

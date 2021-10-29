@@ -33,6 +33,6 @@ class AverageMaxLocalizableAttributesPerFamilySpec extends ObjectBehavior
     {
         $connection->query(Argument::type('string'))->willReturn($statement);
         $statement->fetch()->willReturn(['average' => '5', 'max' => '13']);
-        $this->fetch()->shouldBeLike(new AverageMaxVolumes(13, 5, 14, 'average_max_localizable_attributes_per_family'));
+        $this->fetch()->shouldBeLike(new AverageMaxVolumes(13, 5, 'average_max_localizable_attributes_per_family'));
     }
 }

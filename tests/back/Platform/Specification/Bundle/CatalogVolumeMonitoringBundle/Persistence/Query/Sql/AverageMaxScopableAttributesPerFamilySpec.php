@@ -33,6 +33,6 @@ class AverageMaxScopableAttributesPerFamilySpec extends ObjectBehavior
     {
         $connection->query(Argument::type('string'))->willReturn($statement);
         $statement->fetch()->willReturn(['average' => '5', 'max' => '11']);
-        $this->fetch()->shouldBeLike(new AverageMaxVolumes(11, 5, 14, 'average_max_scopable_attributes_per_family'));
+        $this->fetch()->shouldBeLike(new AverageMaxVolumes(11, 5, 'average_max_scopable_attributes_per_family'));
     }
 }

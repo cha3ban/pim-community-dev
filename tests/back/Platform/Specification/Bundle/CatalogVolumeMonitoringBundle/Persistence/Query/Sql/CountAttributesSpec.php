@@ -33,6 +33,6 @@ class CountAttributesSpec extends ObjectBehavior
     {
         $connection->query(Argument::type('string'))->willReturn($statement);
         $statement->fetch()->willReturn(['count' => '4']);
-        $this->fetch()->shouldBeLike(new CountVolume(4, 12, 'count_attributes'));
+        $this->fetch()->shouldBeLike(new CountVolume(4, 'count_attributes'));
     }
 }
