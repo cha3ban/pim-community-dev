@@ -20,8 +20,19 @@ include make-file/*.mk
 ##
 ## Front
 ##
+
 .PHONY: node_modules
 node_modules:
+  ifdef HOST_YARN_CACHE_FOLDER
+	mkdir -p HOST_YARN_CACHE_FOLDER
+  else
+	mkdir -p ~/.cache/yarn
+  endif
+  ifdef HOST_CYPRESS_CACHE_FOLDER
+	mkdir -p HOST_CYPRESS_CACHE_FOLDER
+  else
+	mkdir -p ~/.cache/Cypress
+  endif
 	$(YARN_RUN) install --frozen-lockfile
 
 .PHONY: javascript-extensions
@@ -86,6 +97,11 @@ cache:
 
 .PHONY: vendor
 vendor:
+  ifdef HOST_COMPOSER_HOME
+	mkdir -p HOST_YARN_CACHE_FOLDER
+  else
+	mkdir -p ~/.composer
+  endif
     # check if composer.json is out of sync with composer.lock
 	$(PHP_RUN) /usr/local/bin/composer validate --no-check-all
 	$(PHP_RUN) -d memory_limit=4G /usr/local/bin/composer install
