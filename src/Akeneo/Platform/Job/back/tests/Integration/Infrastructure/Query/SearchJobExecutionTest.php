@@ -161,6 +161,33 @@ class SearchJobExecutionTest extends IntegrationTestCase
     /**
      * @test
      */
+    public function it_returns_filtered_job_executions_on_username(): void
+    {
+        $query = new SearchJobExecutionQuery();
+        $query->users = ['peter'];
+        $query->size = 10;
+
+        $expectedJobExecutions = [
+            new JobExecutionRow(
+                $this->jobExecutionIds[1],
+                'A product import',
+                'import',
+                new \DateTimeImmutable('2020-01-02T00:00:00+00:00'),
+                'peter',
+                'STARTED',
+                0,
+                2,
+                1,
+                3,
+            ),
+        ];
+
+        $this->assertEquals($expectedJobExecutions, $this->getQuery()->search($query));
+    }
+
+    /**
+     * @test
+     */
     public function it_returns_filtered_job_executions_on_search(): void
     {
         $query = new SearchJobExecutionQuery();
@@ -228,6 +255,18 @@ class SearchJobExecutionTest extends IntegrationTestCase
         $query->type = ['export'];
 
         $this->assertEquals(1, $this->getQuery()->count($query));
+    }
+
+    /**
+     * @test
+     */
+    public function it_throws_invalid_argument_exception_when_sort_column_is_not_supported()
+    {
+        $query = new SearchJobExecutionQuery();
+        $query->sortColumn = 'invalid_column';
+
+        $this->expectExceptionObject(new \InvalidArgumentException(sprintf('Sort column "%s" is not supported', $query->sortColumn)));
+        $this->getQuery()->search($query);
     }
 
     /**
@@ -427,18 +466,6 @@ class SearchJobExecutionTest extends IntegrationTestCase
         ];
 
         $this->assertEquals($expectedJobExecutions, $this->getQuery()->search($query));
-    }
-
-    /**
-     * @test
-     */
-    public function it_throws_invalid_argument_exception_when_sort_column_is_not_supported()
-    {
-        $query = new SearchJobExecutionQuery();
-        $query->sortColumn = 'invalid_column';
-
-        $this->expectExceptionObject(new \InvalidArgumentException(sprintf('Sort column "%s" is not supported', $query->sortColumn)));
-        $this->getQuery()->search($query);
     }
 
     /**
