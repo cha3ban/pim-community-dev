@@ -10,3 +10,9 @@ services:
         public: true
         arguments:
             - '@Akeneo\Platform\Job\Domain\Query\FindJobTypesInterface'
+
+    akeneo.job.controller.get_job_users_action:
+        class: 'Akeneo\Platform\Job\Infrastructure\Controller\GetJobUsersAction'
+        public: true
+        arguments:
+            - '@Akeneo\Platform\Job\Domain\Query\FindJobUsersInterface'

@@ -9,9 +9,9 @@ use Akeneo\Test\IntegrationTestsBundle\Helper\WebClientHelper;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\HttpFoundation\Response;
 
-class GetJobTypesActionTest extends ControllerIntegrationTestCase
+class GetJobUsersActionTest extends ControllerIntegrationTestCase
 {
-    private const ROUTE = 'akeneo_job_get_job_types_action';
+    private const ROUTE = 'akeneo_job_get_job_users_action';
     private WebClientHelper $webClientHelper;
 
     public function setUp(): void
@@ -27,13 +27,12 @@ class GetJobTypesActionTest extends ControllerIntegrationTestCase
     {
         $this->webClientHelper->callApiRoute($this->client, self::ROUTE);
 
-        $expectedJobTypes = [
-            'import',
-            'export',
+        $expectedJobUsers = [
+            'admin',
         ];
 
         $response = $this->client->getResponse();
         Assert::assertSame($response->getStatusCode(), Response::HTTP_OK);
-        Assert::assertEqualsCanonicalizing(json_decode($response->getContent(), true), $expectedJobTypes);
+        Assert::assertEqualsCanonicalizing(json_decode($response->getContent(), true), $expectedJobUsers);
     }
 }

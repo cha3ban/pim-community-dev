@@ -72,8 +72,9 @@ SQL;
 
         $jobExecutions = [
             'a_job_execution' => $this->createJobExecution([
-                'job_instance_id' => $jobInstances['a_product_import']
-            ])
+                'user' => 'admin',
+                'job_instance_id' => $jobInstances['a_product_import'],
+            ]),
         ];
 
         return [
