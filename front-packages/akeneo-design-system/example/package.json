@@ -4,13 +4,13 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
+    "@testing-library/react": "^10.1.0",
     "@testing-library/user-event": "^7.1.2",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^27.0.0",
     "akeneo-design-system": "file:../lib",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
+    "react-scripts": "5.0.0",
     "styled-components": "^5.2.0"
   },
   "scripts": {
